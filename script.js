@@ -1,22 +1,35 @@
 const door = document.querySelector('#door');
 const open = document.querySelector("#open");
 
-function abrir(){
-    door.src = "img/Aberta.jpg"
+function isBroken(){
+    return door.src.indexOf ('Quebrada') > -1
 }
 
-function fechar(){
-    door.src = "img/Fechada.jpg"
+function Abrir(){
+    if( !isBroken() ){
+        door.src = "img/Aberta.jpg"
+    }
+}
+
+function Fechar(){
+    if( !isBroken() ){
+        door.src = "img/Fechada.jpg"
+    }
+}
+
+function Broken(){
+    door.src = "img/Quebrada.jpg"
 }
 
 function AbreFecha(){
     if (open.textContent == "Abrir"){
-        abrir();
+        Abrir();
         open.textContent = "Fechar";
     } else {
-        fechar();
+        Fechar();
         open.textContent = "Abrir"
     }
 }
 
-open.addEventListener( "click", AbreFecha );
+open.addEventListener( "click", AbreFecha)
+door.addEventListener( "dblclick", Broken );
